@@ -57,7 +57,7 @@ def kill_video():
 		kill_process(proc_18)
 		kill_process(proc_security)
 		kill_process(proc_code)
-		subprocess.Popen(['killall', 'oxmplayer.bin'])
+		subprocess.Popen(['killall', 'omxplayer.bin'])
 	print("killing existing video")
 
 def kill_process(proc):
@@ -65,24 +65,24 @@ def kill_process(proc):
 		proc.kill()
 
 def start_fullscreen(video):
-    print("starting full screen: " + video)
-    if not (debug):
-    	return subprocess.Popen(['omxplayer', "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "155", "--loop", "--vol 0", video])
+	print("starting full screen: " + video)
+	if not (debug):
+		return subprocess.Popen(['omxplayer', "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "255", "--loop", "--vol 0", video])
 
 def start_topright(video):
-    print("starting in top right: " + video)
-    if not (debug):
-    	return subprocess.Popen(['omxplayer', "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol", "0", video])
+	print("starting in top right: " + video)
+	if not (debug):
+		return subprocess.Popen(['omxplayer', "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol", "0", video])
 
 def start_bottomleft(video):
-    print("starting in bottom left: " + video)
-    if not (debug):
-    	return subprocess.Popen(['omxplayer', "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol", "0", video])
+	print("starting in bottom left: " + video)
+	if not (debug):
+		return subprocess.Popen(['omxplayer', "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol", "0", video])
 
 def end_loop():
 	print("terminating")
 	kill_video()
-	sys.exit(0)
+	root.destroy()
 
 # Setup the GPIO callback events
 if debug == False:
