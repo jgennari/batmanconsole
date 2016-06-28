@@ -21,7 +21,7 @@ proc_code = None
 proc_24 = None
 proc_23 = None
 proc_25 = None
-prop_18 = None
+proc_18 = None
 
 sec_x1 = int(round((47) / subsample,0))
 sec_y1 = int(round((503) / subsample,0))
@@ -38,24 +38,31 @@ full_y = int(round(1080 / subsample,0))
 
 # Setup the callback events
 def event_24(*channel):  
-	kill_video()
 	proc_24 = start_fullscreen(mov_24)
 
 def event_23(*channel): 
-	kill_video()
 	proc_23 = start_fullscreen(mov_23)
 
 def event_25(*channel):  
-	kill_video()
 	proc_25 = start_fullscreen(mov_25)
 
 def event_18(*channel):  
-	kill_video()
 	proc_18 = start_fullscreen(mov_18)
 
 def kill_video():
-	subprocess.Popen(['killall', 'oxmplayer.bin'])
+	if not (debug):
+		kill_process(proc_24)
+		kill_process(proc_23)
+		kill_process(proc_25)
+		kill_process(proc_18)
+		kill_process(proc_security)
+		kill_process(proc_code)
+		subprocess.Popen(['killall', 'oxmplayer.bin'])
 	print("killing existing video")
+
+def kill_process(proc):
+	if proc != None:
+		proc.kill()
 
 def start_fullscreen(video):
     print("starting full screen: " + video)
@@ -112,12 +119,13 @@ if debug:
 	button25.place(y=50,x=50)
 	button18 = tk.Button(root, text="Emulate 18", command=event_18)
 	button18.place(y=50,x=125)	
-	quitButton = tk.Button(root, text="Quit", command=end_loop)
-	quitButton.place(y=10,x=10)
 	w, h = root.winfo_screenwidth()/subsample, root.winfo_screenheight()/subsample
 else:
 	w, h = root.winfo_screenwidth(), root.winfo_screenheight() #fullscreen
 	root.overrideredirect(1) #remove window chrome
+
+quitButton = tk.Button(root, text="Quit", command=end_loop)
+quitButton.place(y=10,x=10)
 
 root.geometry("%dx%d+0+0" % (w, h))
 background_label.image = background_image
