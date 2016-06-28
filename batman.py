@@ -52,13 +52,13 @@ def event_24(*channel):
 	proc_24 = start_topleft(mov_24)
 
 def event_23(*channel): 
-	proc_23 = start_topleft(mov_23)
+	proc_23 = start_bottomright(mov_23)
 
 def event_25(*channel):  
 	proc_25 = start_topleft(mov_25)
 
 def event_18(*channel):  
-	proc_18 = start_topleft(mov_18)
+	proc_18 = start_bottomright(mov_18)
 
 def kill_video():
 	if not (debug):
