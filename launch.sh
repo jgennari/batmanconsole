@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo python batman.py
+sudo python3 batman.py
