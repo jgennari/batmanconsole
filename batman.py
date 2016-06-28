@@ -5,6 +5,7 @@ import subprocess
 # Setting debug to false will enable GPIO and disable helper buttons in UI
 debug = False
 subsample = 2
+showbuttons = True
 
 if debug == False:
 	import RPi.GPIO as GPIO
@@ -115,7 +116,7 @@ background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 root.title("Batcave v1.0")
 
-if debug:
+if showbuttons:
 	button24 = tk.Button(root, text="Emulate 24", command=event_24)
 	button24.place(y=10,x=50)
 	button23 = tk.Button(root, text="Emulate 23", command=event_23)
@@ -124,6 +125,8 @@ if debug:
 	button25.place(y=50,x=50)
 	button18 = tk.Button(root, text="Emulate 18", command=event_18)
 	button18.place(y=50,x=125)	
+
+if debug:
 	w, h = root.winfo_screenwidth()/subsample, root.winfo_screenheight()/subsample
 else:
 	w, h = root.winfo_screenwidth(), root.winfo_screenheight() #fullscreen
