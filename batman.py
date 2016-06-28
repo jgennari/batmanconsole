@@ -1,9 +1,8 @@
 import tkinter as tk
-import sys, os
-import subprocess 
+import sys, os, time, subprocess 
 
 # Setting debug to false will enable GPIO and disable helper buttons in UI
-debug = False
+debug = True
 subsample = 2
 showbuttons = True
 
@@ -40,25 +39,48 @@ minil_x2 = int(round((40 + 880) / subsample,0))
 minil_y2 = int(round((10 + 500) / subsample,0))
 
 minir_x1 = int(round((990) / subsample,0))
-minir_y1 = int(round((540) / subsample,0))
+minir_y1 = int(round((590) / subsample,0))
 minir_x2 = int(round((990 + 880) / subsample,0))
-minir_y2 = int(round((540 + 500) / subsample,0))
+minir_y2 = int(round((590 + 500) / subsample,0))
 
 full_x = int(round(1920 / subsample,0)) 
 full_y = int(round(1080 / subsample,0)) 
 
+delay = 15
+last_play = 0
+
 # Setup the callback events
 def event_24(*channel):  
-	proc_24 = start_topleft(mov_24)
+	global last_play
+	if time.time() - last_play > delay:
+		last_play = time.time()
+		proc_24 = start_topleft(mov_24)
+	else:
+		print("Elapsed time is only " + str(time.time() - last_play) + "sec ... need " + str(delay))
 
 def event_23(*channel): 
-	proc_23 = start_bottomright(mov_23)
+	global last_play
+	if time.time() - last_play > delay:
+		last_play = time.time()
+		proc_23 = start_bottomright(mov_23)
+	else:
+		print("Elapsed time is only " + str(time.time() - last_play) + "sec ... need " + str(delay))
 
 def event_25(*channel):  
-	proc_25 = start_topleft(mov_25)
+	global last_play
+	if time.time() - last_play > delay:
+		last_play = time.time()
+		proc_25 = start_topleft(mov_25)
+	else:
+		print("Elapsed time is only " + str(time.time() - last_play) + "sec ... need " + str(delay))
 
 def event_18(*channel):  
-	proc_18 = start_bottomright(mov_18)
+	global last_play
+	if time.time() - last_play > delay:
+		last_play = time.time()
+		proc_18 = start_bottomright(mov_18)
+	else:
+		print("Elapsed time is only " + str(time.time() - last_play) + "sec ... need " + str(delay))
 
 def kill_video():
 	if not (debug):
