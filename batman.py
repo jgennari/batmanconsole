@@ -34,10 +34,15 @@ code_y1 = int(round((40) / subsample,0))
 code_x2 = int(round((990 + 920) / subsample,0))
 code_y2 = int(round((40 + 517) / subsample,0))
 
-mini_x1 = int(round((40) / subsample,0))
-mini_y1 = int(round((10) / subsample,0))
-mini_x2 = int(round((40 + 880) / subsample,0))
-mini_y2 = int(round((10 + 500) / subsample,0))
+minil_x1 = int(round((40) / subsample,0))
+minil_y1 = int(round((10) / subsample,0))
+minil_x2 = int(round((40 + 880) / subsample,0))
+minil_y2 = int(round((10 + 500) / subsample,0))
+
+minir_x1 = int(round((990) / subsample,0))
+minir_y1 = int(round((540) / subsample,0))
+minir_x2 = int(round((990 + 880) / subsample,0))
+minir_y2 = int(round((540 + 500) / subsample,0))
 
 full_x = int(round(1920 / subsample,0)) 
 full_y = int(round(1080 / subsample,0)) 
@@ -73,7 +78,12 @@ def kill_process(proc):
 def start_topleft(video):
 	print("starting in top left: " + video)
 	if not (debug):
-		return subprocess.Popen(['omxplayer', "--win", str(mini_x1) + "," + str(mini_y1) + "," + str(mini_x2) + "," + str(mini_y2), "--alpha", "255", "--vol", "100", video])
+		return subprocess.Popen(['omxplayer', "--win", str(minil_x1) + "," + str(minil_y1) + "," + str(minil_x2) + "," + str(minil_y2), "--alpha", "255", "--vol", "100", video])
+
+def start_bottomright(video):
+	print("starting in top left: " + video)
+	if not (debug):
+		return subprocess.Popen(['omxplayer', "--win", str(minir_x1) + "," + str(minir_y1) + "," + str(minir_x2) + "," + str(minir_y2), "--alpha", "255", "--vol", "100", video])
 
 def start_topright(video):
 	print("starting in top right: " + video)
