@@ -54,38 +54,27 @@ def event_18(*channel):
 	proc_18 = start_fullscreen(mov_18)
 
 def kill_video():
-	if proc_24 != None:
-		proc_24.kill()
-	if proc_23 != None:
-		proc_23.kill()
-	if proc_25 != None:
-		proc_25.kill()
-	if prop_18 != None:
-		prop_18.kill()
-
+	subprocess.Popen(['killall', 'oxmplayer.bin'])
 	print("killing existing video")
 
 def start_fullscreen(video):
     print("starting full screen: " + video)
-    if !Debug:
-    return subprocess.Popen(['omxplayer', video, "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "155", "--loop", "--vol 0", video])
+    if not (debug):
+    	return subprocess.Popen(['omxplayer', "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "155", "--loop", "--vol 0", video])
 
 def start_topright(video):
     print("starting in top right: " + video)
-    return subprocess.Popen(['omxplayer', video, "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol", "0", video])
+    if not (debug):
+    	return subprocess.Popen(['omxplayer', "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol", "0", video])
 
 def start_bottomleft(video):
     print("starting in bottom left: " + video)
-    return subprocess.Popen(['omxplayer', video, "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol", "0", video])
+    if not (debug):
+    	return subprocess.Popen(['omxplayer', "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol", "0", video])
 
 def end_loop():
 	print("terminating")
 	kill_video()
-	if proc_code != None:
-		proc_code.kill()
-	if proc_security != None:
-		proc_security.kill()
-
 	sys.exit(0)
 
 # Setup the GPIO callback events
@@ -122,17 +111,15 @@ if debug:
 	button25 = tk.Button(root, text="Emulate 25", command=event_25)
 	button25.place(y=50,x=50)
 	button18 = tk.Button(root, text="Emulate 18", command=event_18)
-	button18.place(y=50,x=125)
+	button18.place(y=50,x=125)	
+	quitButton = tk.Button(root, text="Quit", command=end_loop)
+	quitButton.place(y=10,x=10)
 	w, h = root.winfo_screenwidth()/subsample, root.winfo_screenheight()/subsample
 else:
 	w, h = root.winfo_screenwidth(), root.winfo_screenheight() #fullscreen
 	root.overrideredirect(1) #remove window chrome
 
 root.geometry("%dx%d+0+0" % (w, h))
-
-quitButton = tk.Button(root, text="Quit", command=end_loop)
-quitButton.place(y=10,x=10)
-
 background_label.image = background_image
 
 print("Starting security video ...")
