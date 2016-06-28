@@ -3,7 +3,7 @@ import sys, os
 import subprocess 
 
 # Setting debug to false will enable GPIO and disable helper buttons in UI
-debug = True
+debug = False
 subsample = 2
 
 if debug == False:
@@ -30,7 +30,7 @@ sec_y2 = int(round((527 + 540) / subsample,0))
 
 code_x1 = int(round((990) / subsample,0))
 code_y1 = int(round((40) / subsample,0))
-code_x2 = int(round((990 + 517) / subsample,0))
+code_x2 = int(round((990 + 920) / subsample,0))
 code_y2 = int(round((40 + 517) / subsample,0))
 
 full_x = int(round(1920 / subsample,0)) 
@@ -67,17 +67,17 @@ def kill_process(proc):
 def start_fullscreen(video):
 	print("starting full screen: " + video)
 	if not (debug):
-		return subprocess.Popen(['omxplayer', "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "255", "--loop", "--vol 0", video])
+		return subprocess.Popen(['omxplayer', "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "255", "--vol", "0", video])
 
 def start_topright(video):
 	print("starting in top right: " + video)
 	if not (debug):
-		return subprocess.Popen(['omxplayer', "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol", "0", video])
+		return subprocess.Popen(['omxplayer', "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "255", "--loop", "--vol", "0", video])
 
 def start_bottomleft(video):
 	print("starting in bottom left: " + video)
 	if not (debug):
-		return subprocess.Popen(['omxplayer', "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol", "0", video])
+		return subprocess.Popen(['omxplayer', "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "255", "--loop", "--vol", "0", video])
 
 def end_loop():
 	print("terminating")
