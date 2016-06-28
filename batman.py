@@ -25,16 +25,16 @@ prop_18 = None
 
 sec_x1 = int(round((47) / subsample,0))
 sec_y1 = int(round((503) / subsample,0))
-sec_x2 = int(round((sec_x1 + 960) / subsample,0))
-sec_y2 = int(round((sec_y1 + 540) / subsample,0))
+sec_x2 = int(round((47 + 960) / subsample,0))
+sec_y2 = int(round((503 + 540) / subsample,0))
 
 code_x1 = int(round((911) / subsample,0))
 code_y1 = int(round((34) / subsample,0))
-code_x2 = int(round((code_x1 + 960) / subsample,0))
-code_y2 = int(round((code_y1 + 540) / subsample,0))
+code_x2 = int(round((911 + 960) / subsample,0))
+code_y2 = int(round((34 + 540) / subsample,0))
 
-full_x = int(round(1920/ subsample,0)) 
-full_y = int(round(1080/ subsample,0)) 
+full_x = int(round(1920 / subsample,0)) 
+full_y = int(round(1080 / subsample,0)) 
 
 # Setup the callback events
 def event_24(*channel):  
@@ -67,6 +67,7 @@ def kill_video():
 
 def start_fullscreen(video):
     print("starting full screen: " + video)
+    if !Debug:
     return subprocess.Popen(['omxplayer', video, "--win", "0,0," + str(full_x) + "," + str(full_y), "--alpha", "155", "--loop", "--vol 0", video])
 
 def start_topright(video):
