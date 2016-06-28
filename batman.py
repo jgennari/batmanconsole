@@ -33,10 +33,10 @@ code_y1 = int(round((40) / subsample,0))
 code_x2 = int(round((990 + 920) / subsample,0))
 code_y2 = int(round((40 + 517) / subsample,0))
 
-mini_x1 = int(round((10) / subsample,0))
+mini_x1 = int(round((40) / subsample,0))
 mini_y1 = int(round((10) / subsample,0))
-mini_x2 = int(round((10 + 900) / subsample,0))
-mini_y2 = int(round((10 + 520) / subsample,0))
+mini_x2 = int(round((40 + 880) / subsample,0))
+mini_y2 = int(round((10 + 500) / subsample,0))
 
 full_x = int(round(1920 / subsample,0)) 
 full_y = int(round(1080 / subsample,0)) 
