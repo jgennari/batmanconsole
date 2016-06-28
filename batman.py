@@ -71,12 +71,11 @@ def start_fullscreen(video):
 
 def start_topright(video):
     print("starting in top right: " + video)
-    return subprocess.Popen(['omxplayer', video, "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol 0", video])
-    return start_video(video, "--win " + str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2) + " --alpha 155 --loop --vol 0")
+    return subprocess.Popen(['omxplayer', video, "--win", str(code_x1) + "," + str(code_y1) + "," + str(code_x2) + "," + str(code_y2), "--alpha", "200", "--loop", "--vol", "0", video])
 
 def start_bottomleft(video):
     print("starting in bottom left: " + video)
-    return subprocess.Popen(['omxplayer', video, "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol 0", video])
+    return subprocess.Popen(['omxplayer', video, "--win", str(sec_x1) + "," + str(sec_y1) + "," + str(sec_x2) + "," + str(sec_y2), "--alpha", "200", "--loop", "--vol", "0", video])
 
 def end_loop():
 	print("terminating")
